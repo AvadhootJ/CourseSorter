@@ -1,3 +1,7 @@
+/**
+*Created by Avadhoot Joshi
+ */
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
@@ -7,10 +11,11 @@ public class SortCourse implements Cloneable {
     /**Lets Purdue CS students figure out how many classes they need to finish tracks.*/
 
     // 0-> CS General Cores. ---> Complete and working.
-    // 1-> Foundations of Computer Science. ---> Complete and working
-    // 2-> Programming Language. ---> Complete and working.
-    // 3-> Security. ---> Complete and working.// 8-> Software Engineering.
-    // 4-> Systems Programming. --->Complete and working.
+    // 1-> Computer Graphics and Visualization. ---> Complete and working.
+    // 2-> Foundations of Computer Science. ---> Complete and working.
+    // 3-> Programming Language. ---> Complete and working.
+    // 4-> Security. ---> Complete and working.
+    // 5-> Systems Programming. --->Complete and working.
 
 
     static Collection CSGeneralCores = new ArrayList() {{
@@ -90,43 +95,7 @@ public class SortCourse implements Cloneable {
     }};
 
 
-    static Collection CSECore = new ArrayList() {{
-        add(26600); /**or**/
-        add(36600); /**or**/
-        add(31400);
-    }};
-    static Collection CSEList1 = new ArrayList() {{
-        add(30700);
-        add(33400);
-    }};
-    static Collection CSEList2 = new ArrayList() {{
-        add(35200);
-        add(35400);
-        add(38100);
-        add(43400);
-        add(34800);/**or**/
-        add(44800);/**or**/
-        add(47100);
-        add(49000);
-    }};
-    static Collection CSEList3 = new ArrayList() {{
-        add(38100);
-    }};
-    static Collection CSEList4 = new ArrayList() {{
-        add(35400);
-    }};
-    static Collection CSEList5 = new ArrayList() {{
-        add(51400);
-        add(51500);
-        add(49700);
-    }};
-    static Collection CSEList6 = new ArrayList() {{
-        add(33400);
-        add(35200);
-        add(45600);
-        add(47100);
-        add(48300);
-    }};
+
 
     static Collection CGV_Core = new ArrayList() {{
         add(33400);
@@ -145,26 +114,6 @@ public class SortCourse implements Cloneable {
         add(47100);
 
     }};
-
-    static Collection Soft_Core = new ArrayList() {{
-
-    }};
-
-    static Collection Soft_Elective = new ArrayList(){{
-        add(34800);
-        add(35200);
-        add(35300);
-        add(35400);
-        add(38100);
-        add(42200);
-        add(42600);
-        add(42800);
-        add(45600);
-        add(47300);
-        add(45400);
-        add(48100);
-    }};
-
 
     public static void main(String[] args) {
 
@@ -185,7 +134,7 @@ public class SortCourse implements Cloneable {
         int CSGenElectiveRemaining = 6 - CSGeneralCores.size();
 
         System.out.println("*******************************************************************************************");
-        if ((CSGenElectiveRemaining == 0) && (CSGeneralCores.size() != 6)) {
+        if ((CSGenElectiveRemaining == 0) && (CSGeneralCores.size()!=6)) {
             System.out.println("You have completed the Computer Science Core Courses");
         } else {
             System.out.println("In order to complete the Computer Science Core Courses, you have yet to complete the " +
@@ -310,6 +259,65 @@ public class SortCourse implements Cloneable {
 
         System.out.println("*******************************************************************************************");
 
+        //CGV Code
+        int CGVCComplete = 0;
+
+        CGV_Core.removeAll(userCourses);
+        CGV_Elective.removeAll(userCourses);
+
+        int CGVElectiveRemaining = 4 - (8 - CGV_Elective.size());
+        if (userCourses.contains(38100) && userCourses.contains(31400)) {
+            CGVElectiveRemaining += 1;
+        }
+
+        if ((CGV_Elective.size() <= 3) && userCourses.contains(38100) && userCourses.contains(31400)) {
+            CGVElectiveRemaining = 0;
+        } else if (CGV_Elective.size() <= 4) {
+            CGVElectiveRemaining = 0;
+        }
+
+        if (CGV_Core.size() == 0) {
+            CGVCComplete = 1;
+        }
+        if ((CGV_Core.size() == 1) && (CGV_Core.contains(31400) || CGV_Core.contains(38100))) {
+            CGVCComplete = 1;
+        }
+
+        if ((CGVCComplete == 1) && CGVElectiveRemaining == 0) {
+            System.out.println("You have completed the Computer Graphics and Visualization Track");
+        } else {
+            System.out.println("In order to complete the Computer Graphics and Visualization Track, you have yet to " +
+                    "complete the following:");
+        }
+
+        //Doing this the hard way... Considering each and every option
+
+        if (CGVCComplete == 1 && CGVElectiveRemaining != 0) {
+            System.out.println("You have completed all the cores for this track. Good job.");
+
+        } else if ((CGV_Core.size() == 1) && (CGV_Core.contains(33400))) {
+            System.out.println("Core: [33400]");
+        } else if ((CGV_Core.size() == 1) && (CGV_Core.contains(31400))) {
+            System.out.println("You have completed all the cores for this track. Good job.");
+        } else if ((CGV_Core.size() == 1) && (CGV_Core.contains(38100))) {
+            System.out.println("You have completed all the cores for this track. Good job.");
+        } else if ((CGV_Core.size() == 2) && (CGV_Core.contains(31400) && CGV_Core.contains(33400))) {
+            System.out.println("Core: [33400]");
+        } else if ((CGV_Core.size() == 2) && (CGV_Core.contains(38100) && CGV_Core.contains(33400))) {
+            System.out.println("Core: [33400]");
+        } else if ((CGV_Core.size() == 2) && (CGV_Core.contains(31400) && CGV_Core.contains(38100))) {
+            System.out.println("Core: 31400 or 38100");
+            System.out.println("Only 1 course out of 31400 and 38100 will be counted towards Core and Elective");
+        }
+
+
+        if (CGVElectiveRemaining == 0 && CGV_Core.size() != 0) {
+            System.out.println("Electives for this tracks are complete. Good job.");
+        } else if (CGVElectiveRemaining != 0) {
+            System.out.println(CGVElectiveRemaining + " Elective(s) from the list " + CGV_Elective);
+            System.out.println("Only 1 course out of 31400 and 38100 will be counted towards Core and Elective");
+
+        }
     }
 }
 
