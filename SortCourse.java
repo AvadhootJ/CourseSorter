@@ -1,5 +1,5 @@
 /**
-*Created by Avadhoot Joshi
+ * Created by Avadhoot Joshi
  */
 
 import java.util.ArrayList;
@@ -8,14 +8,17 @@ import java.util.Scanner;
 
 public class SortCourse implements Cloneable {
 
-    /**Lets Purdue CS students figure out how many classes they need to finish tracks.*/
+    /**
+     * Lets Purdue CS students figure out how many classes they need to finish their tracks.
+     */
 
     // 0-> CS General Cores. ---> Complete and working.
     // 1-> Computer Graphics and Visualization. ---> Complete and working.
-    // 2-> Foundations of Computer Science. ---> Complete and working.
-    // 3-> Programming Language. ---> Complete and working.
-    // 4-> Security. ---> Complete and working.
-    // 5-> Systems Programming. --->Complete and working.
+    // 2-> Database and Information Systems. ---> Complete and working.
+    // 3-> Foundations of Computer Science. ---> Complete and working.
+    // 4-> Programming Language. ---> Complete and working.
+    // 5-> Security. ---> Complete and working.
+    // 6-> Systems Programming. --->Complete and working.
 
 
     static Collection CSGeneralCores = new ArrayList() {{
@@ -95,8 +98,6 @@ public class SortCourse implements Cloneable {
     }};
 
 
-
-
     static Collection CGV_Core = new ArrayList() {{
         add(33400);
         add(31400);
@@ -114,6 +115,36 @@ public class SortCourse implements Cloneable {
         add(47100);
 
     }};
+
+    static Collection DBISCore = new ArrayList() {{
+        add(34800);
+        add(38100);
+        add(44800);
+    }};
+    static Collection DBISCore2 = new ArrayList() {{
+        add(39000);
+        add(47300);
+    }};
+
+    static Collection DBIS1 = new ArrayList() {{
+        add(35200);
+        add(35400);
+    }};
+    static Collection DBIS2 = new ArrayList() {{
+        add(35500);
+        add(42600);
+    }};
+    static Collection DBIS3a = new ArrayList() {{
+        add(42200);
+        add(47100);
+        add(47800);
+        add(49000);
+    }};
+    static Collection DBIS3b = new ArrayList() {{
+        add(39000);
+        add(47300);
+    }};
+
 
     public static void main(String[] args) {
 
@@ -134,7 +165,7 @@ public class SortCourse implements Cloneable {
         int CSGenElectiveRemaining = 6 - CSGeneralCores.size();
 
         System.out.println("*******************************************************************************************");
-        if ((CSGenElectiveRemaining == 0) && (CSGeneralCores.size()!=6)) {
+        if ((CSGenElectiveRemaining == 0) && (CSGeneralCores.size() != 6)) {
             System.out.println("You have completed the Computer Science Core Courses");
         } else {
             System.out.println("In order to complete the Computer Science Core Courses, you have yet to complete the " +
@@ -259,6 +290,7 @@ public class SortCourse implements Cloneable {
 
         System.out.println("*******************************************************************************************");
 
+
         //CGV Code
         int CGVCComplete = 0;
 
@@ -318,6 +350,106 @@ public class SortCourse implements Cloneable {
             System.out.println("Only 1 course out of 31400 and 38100 will be counted towards Core and Elective");
 
         }
+        System.out.println("*******************************************************************************************");
+
+        //Database and Information Systems Track
+
+        DBISCore.removeAll(userCourses);
+        DBISCore2.removeAll(userCourses);
+        DBIS1.removeAll(userCourses);
+        DBIS2.removeAll(userCourses);
+        DBIS3a.removeAll(userCourses);
+        DBIS3b.removeAll(userCourses);
+
+        boolean Cor1 = false;
+        boolean Cor2 = false;
+        boolean Cat1 = false;
+        boolean Cat2 = false;
+        boolean Cat3a = false;
+        boolean Cat3b = false;
+        boolean Cat3 = false;
+
+        if (userCourses.contains(39000) && (userCourses.contains(47300))) {
+            Cor2 = true;
+            Cat3b = true;
+        }
+        if (userCourses.contains(39000) && (!userCourses.contains(47300))) {
+            Cor2 = true;
+            Cat3b = false;
+        }
+        if (!userCourses.contains(39000) && (userCourses.contains(47300))) {
+            Cor2 = true;
+            Cat3b = false;
+        }
+        if (DBISCore.size() == 0) {
+            Cor1 = true;
+        }
+        if (DBISCore2.size() <= 1) {
+            Cor2 = true;
+        }
+        if (DBIS1.size() <= 1) {
+            Cat1 = true;
+        }
+        if (DBIS2.size() <= 1) {
+            Cat2 = true;
+        }
+        if (DBIS3a.size() <= 3) {
+            Cat3a = true;
+        }
+        if (DBIS3b.size() <= 1) {
+            Cat3b = true;
+        }
+        if ((Cat3a) && (Cat3b)) {
+            Cat3 = true;
+        }
+        if ((!Cat3a) && (Cat3b)) {
+            Cat3 = true;
+        }
+        if ((Cat3a) && (!Cat3b)) {
+            Cat3 = true;
+        }
+
+
+        if ((Cor1) && (Cor2) && (Cat1) && (Cat2) && (Cat3)) {
+            System.out.println("You have completed the Database and Information Systems Track");
+        } else {
+            System.out.println("In order to complete the Database and Information Systems Track, you have yet to complete " +
+                    "the following:");
+        }
+
+        if ((Cor1 && Cor2) && !(Cat1 && Cat2 && Cat3)) {
+            System.out.println("You have completed all the cores for this track. Good job.");
+        }
+        if (!Cor1) {
+            System.out.println("Core: " + DBISCore);
+        }
+        if (!Cor2) {
+            System.out.println("Core: " + DBISCore2);
+            System.out.println("Only one course out of 39000 and 47300 will be counted for Core");
+        }
+
+        if (Cat1 && Cat2 & Cat3 && !(Cor1 && Cor2)) {
+            System.out.println("Electives for this tracks are complete. Good job.");
+        } else if (!Cat1 || !Cat2 || !Cat3) {
+            System.out.println("Electives left are:");
+        }
+        if (!Cat1) {
+            System.out.println(" *Category I - Computing Systems*");
+            System.out.println("-->1 Elective from: " + DBIS1);
+        }
+        if (!Cat2) {
+            System.out.println(" *Category II - Information Assurance*");
+            System.out.println("-->1 Elective from: " + DBIS2);
+        }
+        if (!Cat3a || !Cat3b) {
+            System.out.println(" *Category III - Related Studies*");
+            System.out.println("-->1 Elective from: " + DBIS3a);
+            System.out.println("-->OR 1 Elective from: " + DBIS3b);
+            System.out.println("Only one course out of 39000 and 47300 will be counted for Elective Category III");
+
+        }
+
+
+        System.out.println("*******************************************************************************************");
     }
 }
-
