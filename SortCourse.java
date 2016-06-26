@@ -157,7 +157,7 @@ public class SortCourse implements Cloneable {
         while (s.hasNextInt()) {
             userCourses.add(s.nextInt());
         }
-        System.out.println("Your courses: " + userCourses);
+        System.out.println("--->  Your courses:  <---" + userCourses);
 
         //CS Cores Code
 
@@ -165,6 +165,8 @@ public class SortCourse implements Cloneable {
         int CSGenElectiveRemaining = 6 - CSGeneralCores.size();
 
         System.out.println("*******************************************************************************************");
+        System.out.println("*******************************************************************************************");
+
         if ((CSGenElectiveRemaining == 0) && (CSGeneralCores.size() != 6)) {
             System.out.println("You have completed the Computer Science Core Courses");
         } else {
@@ -181,6 +183,8 @@ public class SortCourse implements Cloneable {
             FoCSElectiveRemaining = 0;
         }
         System.out.println("*******************************************************************************************");
+        System.out.println("*******************************************************************************************");
+
 
         if ((FoCS_Core.size() == 0) && FoCSElectiveRemaining == 0) {
             System.out.println("You have completed the Foundations of Computer Science Track");
@@ -202,6 +206,8 @@ public class SortCourse implements Cloneable {
         }
 
         System.out.println("*******************************************************************************************");
+        System.out.println("*******************************************************************************************");
+
 
         //Security Track Code
 
@@ -231,6 +237,8 @@ public class SortCourse implements Cloneable {
 
 
         System.out.println("*******************************************************************************************");
+        System.out.println("*******************************************************************************************");
+
 
         //Programming Language Track Code
 
@@ -258,6 +266,7 @@ public class SortCourse implements Cloneable {
             System.out.println(ProLangElectiveRemaining + " Elective(s) from the list " + ProLang_Elective);
         }
 
+        System.out.println("*******************************************************************************************");
         System.out.println("*******************************************************************************************");
 
 
@@ -288,6 +297,7 @@ public class SortCourse implements Cloneable {
         }
 
 
+        System.out.println("*******************************************************************************************");
         System.out.println("*******************************************************************************************");
 
 
@@ -351,6 +361,8 @@ public class SortCourse implements Cloneable {
 
         }
         System.out.println("*******************************************************************************************");
+        System.out.println("*******************************************************************************************");
+
 
         //Database and Information Systems Track
 
@@ -451,5 +463,7 @@ public class SortCourse implements Cloneable {
 
 
         System.out.println("*******************************************************************************************");
+        System.out.println("*******************************************************************************************");
+
     }
 }
