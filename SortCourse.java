@@ -332,8 +332,6 @@ public class SortCourse implements Cloneable {
                     "complete the following:");
         }
 
-        //Doing this the hard way... Considering each and every option
-
         if (CGVCComplete == 1 && CGVElectiveRemaining != 0) {
             System.out.println("You have completed all the cores for this track. Good job.");
 
@@ -466,4 +464,6 @@ public class SortCourse implements Cloneable {
         System.out.println("*******************************************************************************************");
 
     }
+
+    //Machine Intelligence Track
 }
