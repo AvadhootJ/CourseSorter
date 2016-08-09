@@ -19,6 +19,7 @@ public class SortCourse implements Cloneable {
     // 4-> Programming Language. ---> Complete and working.
     // 5-> Security. ---> Complete and working.
     // 6-> Systems Programming. --->Complete and working.
+    // 7-> Machine Intelligence. ---> Complete and working.
 
 
     static Collection CSGeneralCores = new ArrayList() {{
@@ -145,6 +146,32 @@ public class SortCourse implements Cloneable {
         add(47300);
     }};
 
+
+    static Collection MI_Core1 = new ArrayList() {{
+        add(39000);
+        add(38100);
+    }};
+
+    static Collection MI_Core2 = new ArrayList() {{
+        add(47100);
+        add(47300);
+    }};
+
+    static Collection MI_Core3 = new ArrayList() {{
+
+        add(41600);
+        add(51200);
+    }};
+
+    static Collection MI_Elective = new ArrayList() {{
+        add(34800);
+        add(35200);
+        add(44800);
+        add(45600);
+        add(47100);
+        add(48300);
+        add(47300);
+    }};
 
     public static void main(String[] args) {
 
@@ -463,7 +490,57 @@ public class SortCourse implements Cloneable {
         System.out.println("*******************************************************************************************");
         System.out.println("*******************************************************************************************");
 
+
+        //Machine Intelligence Track
+
+        MI_Core1.removeAll(userCourses);
+        MI_Core2.removeAll(userCourses);
+        MI_Core3.removeAll(userCourses);
+        MI_Elective.removeAll(userCourses);
+
+
+        int MI_ElectiveRemaining = 2 - (7 - MI_Elective.size());
+        if (MI_Elective.size() <= 5) {
+            MI_ElectiveRemaining = 0;
+        }
+
+        if ((MI_ElectiveRemaining == 0) && (MI_Core1.size() == 0) && (MI_Core2.size() <= 1) && (MI_Core3.size() <= 1)) {
+            System.out.println("You have completed the Database and Information Systems Track");
+        } else {
+            System.out.println("In order to complete the Database and Information Systems Track, you have yet to complete " +
+                    "the following:");
+        }
+
+        if ((MI_Core1.size() == 0) && (MI_Core2.size() <= 1) && (MI_Core3.size() <= 1)) {
+            System.out.println("You have completed all the cores for this track. Good job.");
+        }else
+        {
+            System.out.println("Cores: ");
+        }
+        if(MI_Core1.size()!= 0){
+            System.out.println("All from: "+MI_Core1);
+        }
+        if(MI_Core2.size() > 1){
+            System.out.println("1 from: "+MI_Core2);
+        }
+        if(MI_Core3.size() > 1){
+            System.out.println("1 from: "+MI_Core3);
+        }
+
+        if (MI_ElectiveRemaining == 0) {
+            System.out.println("Electives for this tracks are complete. Good job.");
+        } else if (MI_ElectiveRemaining != 0) {
+            System.out.println(MI_ElectiveRemaining + " Elective(s) from the list: " + MI_Elective);
+            System.out.println("Three credits of a relevant EPICS or independent study project may be used as one " +
+                    "elective with track committee approval.");
+
+
+        }
+
+        System.out.println("*******************************************************************************************");
+        System.out.println("*******************************************************************************************");
+
     }
 
-    //Machine Intelligence Track
+
 }
