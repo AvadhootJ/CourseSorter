@@ -20,6 +20,7 @@ public class SortCourse implements Cloneable {
     // 5-> Security. ---> Complete and working.
     // 6-> Systems Programming. --->Complete and working.
     // 7-> Machine Intelligence. ---> Complete and working.
+    // 8-> Software Engineering. ---> Complete and working.
 
 
     static Collection CSGeneralCores = new ArrayList() {{
@@ -173,6 +174,33 @@ public class SortCourse implements Cloneable {
         add(47300);
     }};
 
+    static Collection SE_Core1 = new ArrayList() {{
+        add(30700);
+        add(40800);
+        add(49000);
+    }};
+
+    static Collection SE_Core2 = new ArrayList() {{
+        add(35200);
+        add(35400);
+    }};
+
+    static Collection SE_Elective = new ArrayList() {{
+        add(34800);
+        add(35200);
+        add(35300);
+        add(35400);
+        add(38100);
+        add(42200);
+        add(42600);
+        add(44800);
+        add(45600);
+        add(47300);
+        add(45400);
+        add(48100);
+
+    }};
+
     public static void main(String[] args) {
 
         Collection userCourses = new ArrayList<>();
@@ -184,7 +212,7 @@ public class SortCourse implements Cloneable {
         while (s.hasNextInt()) {
             userCourses.add(s.nextInt());
         }
-        System.out.println("--->  Your courses:  <---" + userCourses);
+        System.out.println("YOUR COURSES:  --->" + userCourses);
 
         //CS Cores Code
 
@@ -505,26 +533,27 @@ public class SortCourse implements Cloneable {
         }
 
         if ((MI_ElectiveRemaining == 0) && (MI_Core1.size() == 0) && (MI_Core2.size() <= 1) && (MI_Core3.size() <= 1)) {
-            System.out.println("You have completed the Database and Information Systems Track");
+            System.out.println("You have completed the Machine Intelligence Track");
         } else {
-            System.out.println("In order to complete the Database and Information Systems Track, you have yet to complete " +
-                    "the following:");
+            System.out.println("In order to complete the Machine Intelligence Track, you have yet to complete the " +
+                    "following:");
         }
 
         if ((MI_Core1.size() == 0) && (MI_Core2.size() <= 1) && (MI_Core3.size() <= 1)) {
             System.out.println("You have completed all the cores for this track. Good job.");
-        }else
-        {
+        } else {
             System.out.println("Cores: ");
+            System.out.println("NOTE: Students considering graduate work or research in this area are encouraged to " +
+                    "take STAT/MA 41600 and STAT 41700");
         }
-        if(MI_Core1.size()!= 0){
-            System.out.println("All from: "+MI_Core1);
+        if (MI_Core1.size() != 0) {
+            System.out.println("All from: " + MI_Core1);
         }
-        if(MI_Core2.size() > 1){
-            System.out.println("1 from: "+MI_Core2);
+        if (MI_Core2.size() > 1) {
+            System.out.println("1 from: " + MI_Core2);
         }
-        if(MI_Core3.size() > 1){
-            System.out.println("1 from: "+MI_Core3);
+        if (MI_Core3.size() > 1) {
+            System.out.println("1 from: " + MI_Core3);
         }
 
         if (MI_ElectiveRemaining == 0) {
@@ -540,7 +569,64 @@ public class SortCourse implements Cloneable {
         System.out.println("*******************************************************************************************");
         System.out.println("*******************************************************************************************");
 
+        //Software Engineering Track
+
+        SE_Core1.removeAll(userCourses);
+        SE_Core2.removeAll(userCourses);
+        SE_Elective.removeAll(userCourses);
+
+        int SE_ElectiveRemaining = 2 - (12 - SE_Elective.size());
+
+        if (!userCourses.contains(35200) && !userCourses.contains(35400) && SE_Elective.size() <= 10) {
+            SE_ElectiveRemaining = 0;
+        }
+        if (userCourses.contains(35200) && !userCourses.contains(35400) && SE_Elective.size() <= 9) {
+            SE_ElectiveRemaining = 0;
+        }
+
+        if (!userCourses.contains(35200) && userCourses.contains(35400) && SE_Elective.size() <= 9) {
+            SE_ElectiveRemaining = 0;
+        }
+
+        if (userCourses.contains(35200) && userCourses.contains(35400) && SE_Elective.size() == 10) {
+            SE_ElectiveRemaining = 1;
+        }
+
+        if (userCourses.contains(35200) && userCourses.contains(35400) && SE_Elective.size() < 10) {
+            SE_ElectiveRemaining = 0;
+        }
+
+        if ((SE_Core1.size() == 0) && (SE_Core2.size() <= 1) && (SE_ElectiveRemaining == 0)) {
+
+            System.out.println("You have completed the Software Engineering Track");
+        } else {
+            System.out.println("In order to complete the Software Engineering Track, you have yet to complete the " +
+                    "following:");
+            System.out.println("Note: Neither CS 35200 nor CS 35400 can be double counted toward the required and " +
+                    "elective courses");
+        }
+
+        if ((SE_Core1.size() == 0) && (SE_Core2.size() <= 1)) {
+            System.out.println("You have completed all the cores for this track. Good job.");
+
+        } else if ((SE_Core1.size() != 0) || (SE_Core2.size() > 1)) {
+            System.out.println("Cores:");
+        }
+
+        if (SE_Core1.size() != 0) {
+            System.out.println("All from: " + SE_Core1);
+        }
+        if (SE_Core2.size() > 1) {
+            System.out.println("1 from: " + SE_Core2);
+        }
+
+        if (SE_ElectiveRemaining == 0) {
+            System.out.println("Electives for this tracks are complete. Good job.");
+        } else if (SE_ElectiveRemaining != 0) {
+            System.out.println(SE_ElectiveRemaining + " Elective(s) from the list:" + SE_Elective);
+        }
+        
+        System.out.println("*******************************************************************************************");
+        System.out.println("*******************************************************************************************")
     }
-
-
 }
