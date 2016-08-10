@@ -13,6 +13,7 @@ public class SortCourse implements Cloneable {
      */
 
     // 0-> CS General Cores. ---> Complete and working.
+
     // 1-> Computer Graphics and Visualization. ---> Complete and working.
     // 2-> Database and Information Systems. ---> Complete and working.
     // 3-> Foundations of Computer Science. ---> Complete and working.
@@ -21,7 +22,7 @@ public class SortCourse implements Cloneable {
     // 6-> Systems Programming. --->Complete and working.
     // 7-> Machine Intelligence. ---> Complete and working.
     // 8-> Software Engineering. ---> Complete and working.
-
+    // 9-> Computational Science & Engineering. ---> Complete and working.
 
     static Collection CSGeneralCores = new ArrayList() {{
         add(18000);
@@ -201,6 +202,51 @@ public class SortCourse implements Cloneable {
 
     }};
 
+    static Collection CSE_Core1 = new ArrayList() {{
+        add(31400);
+    }};
+
+    static Collection CSE_Core2 = new ArrayList() {{
+        add(26600);
+        add(36600);
+    }};
+
+    static Collection CSE_L1 = new ArrayList() {{
+        add(30700);
+        add(33400);
+    }};
+    static Collection CSE_L2a = new ArrayList() {{
+        add(35200);
+        add(35400);
+        add(38100);
+        add(43400);
+        add(47100);
+        add(49000);
+    }};
+    static Collection CSE_L2b = new ArrayList() {{
+        add(34800);
+        add(44800);
+    }};
+    static Collection CSE_L3 = new ArrayList() {{
+        add(38100);
+    }};
+    static Collection CSE_L4 = new ArrayList() {{
+        add(35400);
+    }};
+    static Collection CSE_L5 = new ArrayList() {{
+        add(51400);
+        add(51500);
+        add(49700);
+    }};
+    static Collection CSE_L6 = new ArrayList() {{
+        add(33400);
+        add(35200);
+        add(45600);
+        add(47100);
+        add(48300);
+    }};
+
+
     public static void main(String[] args) {
 
         Collection userCourses = new ArrayList<>();
@@ -222,9 +268,9 @@ public class SortCourse implements Cloneable {
         System.out.println("*******************************************************************************************");
         System.out.println("*******************************************************************************************");
 
-        if ((CSGenElectiveRemaining == 0) && (CSGeneralCores.size() != 6)) {
+        if ((CSGenElectiveRemaining == 6) && (CSGeneralCores.size() != 6)) {
             System.out.println("You have completed the Computer Science Core Courses");
-        } else {
+        } else if (CSGenElectiveRemaining != 6) {
             System.out.println("In order to complete the Computer Science Core Courses, you have yet to complete the " +
                     "following:");
             System.out.println("Core: " + CSGeneralCores);
@@ -625,8 +671,174 @@ public class SortCourse implements Cloneable {
         } else if (SE_ElectiveRemaining != 0) {
             System.out.println(SE_ElectiveRemaining + " Elective(s) from the list:" + SE_Elective);
         }
-        
+
         System.out.println("*******************************************************************************************");
-        System.out.println("*******************************************************************************************")
+        System.out.println("*******************************************************************************************");
+
+        //Computational Science and Engineering Track
+
+        CSE_Core1.removeAll(userCourses);
+        CSE_Core2.removeAll(userCourses);
+        CSE_L1.removeAll(userCourses);
+        CSE_L2a.removeAll(userCourses);
+        CSE_L2b.removeAll(userCourses);
+        CSE_L3.removeAll(userCourses);
+        CSE_L4.removeAll(userCourses);
+        CSE_L5.removeAll(userCourses);
+        CSE_L6.removeAll(userCourses);
+
+        boolean l1 = false;  //bool for List base completion (Atleast 1)
+        boolean l2 = false;
+        boolean l3 = false;
+        boolean l4 = false;
+        boolean l5 = false;
+        boolean l6 = false;
+
+
+        if (CSE_L1.size() <= 1) {
+            l1 = true;
+        }
+        if (CSE_L2a.size() <= 5 || CSE_L2b.size() <= 1) {
+            l2 = true;
+        }
+        if (CSE_L3.size() == 0) {
+            l3 = true;
+        }
+        if (CSE_L4.size() == 0) {
+            l4 = true;
+        }
+        if (CSE_L5.size() <= 2) {
+            l5 = true;
+        }
+        if (CSE_L6.size() <= 4) {
+            l6 = true;
+        }
+
+        int optionCount1 = 0;
+        int optionCount2 = 0;
+
+        //option1 counter code
+        optionCount1 += (2 - CSE_L1.size());
+        optionCount1 += (6 - CSE_L2a.size());
+        optionCount1 += (2 - CSE_L2b.size());
+        if (userCourses.contains(34800) && userCourses.contains(44800)) {
+            optionCount1 -= 1;
+        }
+
+
+        //option2 counter code
+        optionCount2 += (1 - CSE_L3.size());
+        optionCount2 += (1 - CSE_L4.size());
+        optionCount2 += (3 - CSE_L5.size());
+        optionCount2 += (5 - CSE_L6.size());
+
+        boolean op1done = false;
+        boolean op2done = false;
+        boolean coredone = false;   //Checks is either of the options is complete
+
+        if ((optionCount1 >= 5) && (CSE_L1.size() <= 1) && ((CSE_L2a.size() <= 5) || CSE_L2b.size() <= 1)) {
+            op1done = true;
+        }
+
+        if ((optionCount2 >= 5) && (CSE_L3.size() == 0) && (CSE_L4.size() == 0) && (CSE_L5.size() <= 2) && (CSE_L6.size() <= 4)) {
+            op2done = true;
+        }
+
+        if ((CSE_Core1.size() == 0) && (CSE_Core2.size() <= 1)) {
+            coredone = true;
+        }
+
+        if (coredone && op1done && op2done) {
+            System.out.println("You have completed the Software Engineering Track");
+        } else {
+            System.out.println("In order to complete the Computational Science and Engineering Track, you have yet to" +
+                    " complete the following:");
+        }
+
+        if (coredone) {
+            System.out.println("You have completed all the cores for this track. Good job.");
+        } else if (coredone == false) {
+            System.out.println("Cores: ");
+            if (CSE_Core1.size() != 0) {
+                System.out.println("All from: " + CSE_Core1);
+            }
+            if (CSE_Core2.size() > 1) {
+                System.out.println("One from: " + CSE_Core2);
+            }
+        }
+
+        if (op1done || op2done) {
+            System.out.println("Electives for this tracks are complete. Good job.");
+        } else if (op1done == false && op2done == false) {
+            System.out.println("###Complete either one option###");
+
+            System.out.println("***Option 1: Practical/Applied***");
+            System.out.println("Atleast " + (5 - optionCount1) + " more from the following");
+
+            System.out.println("---List 1---");
+            if (CSE_L1.size() == 2) {
+                System.out.println("Must have atleast 1 from: " + CSE_L1);
+            } else if (CSE_L1.size() == 1) {
+                System.out.println("Choose from: " + CSE_L1);
+            } else if (CSE_L1.size() == 0) {
+                System.out.println("List 1 exhausted");
+            }
+
+            System.out.println("---List 2---");
+            if (CSE_L2a.size() == 6) {
+                System.out.println("Atleast 1 from: " + CSE_L2a);
+                System.out.println("One from : " + CSE_L2b + " is also acceptable");
+            }
+            if (CSE_L2a.size() <= 5) {
+                System.out.println(CSE_L2a);
+                if (CSE_L2b.size() == 2) {
+                    System.out.println("One from: " + CSE_L2b + " is allowed");
+                }
+            }
+            if (CSE_L2a.size() == 0 && CSE_L2b.size() <= 1) {
+                System.out.println("List 2 exhausted");
+            }
+
+            System.out.println("***Option 2 (academic)***");
+            System.out.println("Atleast " + (5 - optionCount2) + " more from the following");
+
+            System.out.println("---List 3---");
+            if (CSE_L3.size() == 1) {
+                System.out.println("You must do: " + CSE_L3);
+            } else if (CSE_L3.size() == 0) {
+                System.out.println("List 3 complete");
+            }
+
+            System.out.println("---List 4---");
+            if (CSE_L4.size() == 1) {
+                System.out.println("You must do: " + CSE_L4);
+            } else if (CSE_L4.size() == 0) {
+                System.out.println("List 4 complete");
+            }
+
+            System.out.println("---List 5---");
+
+            if (CSE_L5.size() == 3) {
+                System.out.println("You must do atleast 1 from: " + CSE_L5);
+            } else if (CSE_L5.size() <= 2) {
+                System.out.println("You can also do: " + CSE_L5);
+
+            } else if (CSE_L3.size() == 0) {
+                System.out.println("List 5 exhausted");
+            }
+            System.out.println("---List 6---");
+
+            if (CSE_L6.size() == 5) {
+                System.out.println("You must do atleast 1 from: " + CSE_L6);
+            } else if (CSE_L6.size() <= 4) {
+                System.out.println("You can also do: " + CSE_L6);
+
+            } else if (CSE_L6.size() == 0) {
+                System.out.println("List 6 exhausted");
+            }
+        }
+
+        System.out.println("*******************************************************************************************");
+        System.out.println("*******************************************************************************************");
     }
 }
