@@ -2,7 +2,7 @@
 
 Shows you how far you've gone in completing the different CS Tracks at Purdue University.
 
-As of 09-August-16, works for 8/9 tracks and the CS major cores:
+As of 09-August-16, works for all 9 tracks and the CS major cores:
 
 0)CS General Cores
 
@@ -21,3 +21,5 @@ As of 09-August-16, works for 8/9 tracks and the CS major cores:
 7)Machine Intelligence
 
 8)Software Engineering
+
+9)Computational Science & Engineering
