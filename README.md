@@ -2,7 +2,7 @@
 
 Shows you how far you've gone in completing the different CS Tracks at Purdue University.
 
-As of 09-August-16, works for all 9 tracks and the CS major cores:
+It works for all 9 tracks and the CS major cores:
 
 0)CS General Cores
 
